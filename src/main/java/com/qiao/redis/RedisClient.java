@@ -41,7 +41,7 @@ public class RedisClient {
             o = client.get(key);
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
         return o;
     }
@@ -56,8 +56,7 @@ public class RedisClient {
             o = client.exists(key);
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
-            ;
+            jedisPool.close();
         }
         return o;
     }
@@ -81,8 +80,7 @@ public class RedisClient {
             }
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
-            ;
+            jedisPool.close();
         }
     }
 
@@ -96,7 +94,7 @@ public class RedisClient {
             return result;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
 
         }
     }
@@ -123,7 +121,7 @@ public class RedisClient {
             }
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
 
         }
     }
@@ -146,7 +144,7 @@ public class RedisClient {
             return true;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
 
         }
     }
@@ -165,7 +163,7 @@ public class RedisClient {
 
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
 
         }
         return returnList;
@@ -176,7 +174,7 @@ public class RedisClient {
         try {
             return client.lrange(key, start, length);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -193,7 +191,7 @@ public class RedisClient {
             return true;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -208,7 +206,7 @@ public class RedisClient {
             return t;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -222,7 +220,7 @@ public class RedisClient {
             }
             t = Util.jsonToBean(s, zz);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
         return t;
 
@@ -236,7 +234,7 @@ public class RedisClient {
             result.addAll(set);
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
         return result;
     }
@@ -249,7 +247,7 @@ public class RedisClient {
             return true;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -261,7 +259,7 @@ public class RedisClient {
             return true;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
 
     }
@@ -290,7 +288,7 @@ public class RedisClient {
             return true;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
 
     }
@@ -302,7 +300,7 @@ public class RedisClient {
             return (T) Util.jsonToBean(value, cls);
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
 
     }
@@ -314,7 +312,7 @@ public class RedisClient {
             return value;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
 
     }
@@ -325,7 +323,7 @@ public class RedisClient {
             return client.hgetAll(key);
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
 
     }
@@ -339,7 +337,7 @@ public class RedisClient {
             return fields;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
 
     }
@@ -351,7 +349,7 @@ public class RedisClient {
             return values;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
 
     }
@@ -362,7 +360,7 @@ public class RedisClient {
             return client.hexists(key, field);
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -371,7 +369,7 @@ public class RedisClient {
         try {
             return client.incr(key);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -380,7 +378,7 @@ public class RedisClient {
         try {
             client.hdel(key, fields);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -393,7 +391,7 @@ public class RedisClient {
         try {
             client.lpush(key, field);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -403,7 +401,7 @@ public class RedisClient {
             String field = Util.beanToJson(obj);
             client.lpush(key, field);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -421,7 +419,7 @@ public class RedisClient {
             }
             client.lpush(key, field);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -430,7 +428,7 @@ public class RedisClient {
         try {
             return client.llen(key);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -439,7 +437,7 @@ public class RedisClient {
         try {
             return client.blpop(timeoutSeconds, key);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -448,7 +446,7 @@ public class RedisClient {
         try {
             return client.sadd(key, values);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -464,7 +462,7 @@ public class RedisClient {
             }
             return client.sadd(key, values);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -473,7 +471,7 @@ public class RedisClient {
         try {
             return client.srem(key, values);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -489,7 +487,7 @@ public class RedisClient {
             }
             return client.srem(key, values);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -498,7 +496,7 @@ public class RedisClient {
         try {
             return client.zrangeByScore(key, min, max);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -507,7 +505,7 @@ public class RedisClient {
         try {
             return client.decr(key);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -516,7 +514,7 @@ public class RedisClient {
         try {
             return client.hlen(key);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -525,7 +523,7 @@ public class RedisClient {
         try {
             return client.hmget(key, fields);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -541,7 +539,7 @@ public class RedisClient {
         try {
             keys = client.keys(str);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
         return keys;
     }
@@ -551,7 +549,7 @@ public class RedisClient {
         try {
             client.ltrim(key, start, stop);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
@@ -566,7 +564,7 @@ public class RedisClient {
         try {
             success = client.expire(key, seconds);
         } finally {
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
             ;
         }
         return success;
@@ -596,7 +594,7 @@ public class RedisClient {
             return true;
         } finally {
             // 向连接池“归还”资源
-            jedisPool.returnResourceObject(client);
+            jedisPool.close();
         }
     }
 
